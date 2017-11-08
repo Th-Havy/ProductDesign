@@ -1,4 +1,4 @@
-# Project Title
+# Smart Trash Bin - Web App
 
 This is a web app as part of the project for the product design course (Yves Bellouard at EPFL).
 This web app shall receive data from "Smart" trash bins, process it and provide some visualisations and predictions, in order to help EPFL cleaners.
