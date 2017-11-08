@@ -1,9 +1,61 @@
 # Contributing to the project
 
+Django is controlled mostly through command line, so we recommand using an appropriate environment (i.e. Linux or Mac with bash script).
+
+We use GitLab for version control and code sharing. The whole point of GitLab is to have all the code in one place, on an online server.
+This way, all contributors make a local copy of the project, modify their copy, and once they are fine with their modifications they apply it to the shared copy on the server.
+
+## Start working on the app
+
+Open a terminal
+
+Copy the gitlab repository (install git if necessary), you should have a GitLab account with right to access this project.
+```
+git clone https://gitlab.com/Th-Havy/ProductDesign.git
+# Enter your username and password as prompted
+```
+
+## Work on the app
+
+Move to the app directory.
+
+Make sure you have the latest version of the code:
+```
+git pull
+# Enter your username and password as prompted
+```
+
+Start the virtual environment:
+```
+source virt_env/bin/activate
+```
+
+In case you want to deactivate it, simply type:
+```
+deactivate
+```
+
+Now, make some modifications to the code: add files, modify files, remove files, ...
+
+Whenever you add new files:
+```
+git add file
+```
+
+After a few modifications:
+```
+git commit -a -m "Small description of the modifications"
+```
+
+Finally to apply your modifications to the server copy:
+```
+git push -u origin master
+```
+
 ## Coding conventions
 
-class: ClassName
-method/function/variables: methodOrVariableName
+**class**: ClassName
+**method/function/variables**: methodOrVariableName
 
 ## How to initially create the project
 
@@ -19,7 +71,7 @@ mkdir virt_env
 # create virtual environment with python 3:
 virtualenv virt_env -p /usr/bin/python3
 # start the virtual environment:
-source bin/activate
+source virt_env/bin/activate
 # install django:
 pip install django
 ```
