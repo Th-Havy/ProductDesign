@@ -54,8 +54,8 @@ git push -u origin master
 
 ## Coding conventions
 
-**class**: ClassName
-**method/function/variables**: methodOrVariableName
+* **class**: ClassName
+* **method/function/variables**: methodOrVariableName
 
 ## How to initially create the project
 
