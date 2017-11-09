@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis', # GeoDjango
+    'rest_framework', # Django Rest Framework
     'map'
 ]
 
