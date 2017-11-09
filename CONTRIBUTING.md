@@ -54,8 +54,11 @@ git push -u origin master
 
 ## Coding conventions
 
+Try to follow the [PEP8](https://www.python.org/dev/peps/pep-0008/#maximum-line-length) and PEP257(https://www.python.org/dev/peps/pep-0257/) recommandations.
+
 * **class**: ClassName
 * **method/function/variables**: methodOrVariableName
+* **constant**: CONSTANT
 
 ## How to initially create the project
 
