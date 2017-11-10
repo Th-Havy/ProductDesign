@@ -24,7 +24,7 @@ When deploying the app into production:
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, how the app works and how to get started.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, how the app works and how to get started.
 
 ## Versioning
 
