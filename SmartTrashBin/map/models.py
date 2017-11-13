@@ -1,19 +1,19 @@
 """Contains the definition of the models.
 
 A model is a python representation of data stored in the database."""
-from django.contrib.gis.db import models
+from django.db import models
 
 class TrashBin(models.Model):
     """Model of a trash bin."""
-    # Location (latitude, longitude, floor)
-    location = models.PointField(dim=3)
+    # Location
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    floor = models.IntegerField()
+    building = models.CharField(max_length=50)
 
-    # Picture ?
-
-    # Current state
-    def state(self):
-        # get list of state and return the latest
-        pass
+    # Most recent state
+    state = models.OneToOneField('TrashBinState', on_delete=models.SET_NULL,
+                                 related_name='+')
 
 class TrashBinState:
     """Fullness state of a given trash bin."""
@@ -24,4 +24,5 @@ class TrashBinState:
     time = models.DateTimeField()
 
     # The trash bin this instance is the state of
-    trashBin = models.ForeignKey(TrashBin, on_delete=models.CASCADE, related_name=state_history)
+    trashBin = models.ForeignKey(TrashBin, on_delete=models.CASCADE,
+                                 related_name='state_history')

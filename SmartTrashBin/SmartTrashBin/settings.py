@@ -37,9 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.gis', # GeoDjango
     'rest_framework', # Django Rest Framework
-    'map'
+    'map' # Our application
 ]
 
 MIDDLEWARE = [
