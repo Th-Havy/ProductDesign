@@ -13,9 +13,15 @@ class TrashBin(models.Model):
 
     # Most recent state
     state = models.OneToOneField('TrashBinState', on_delete=models.SET_NULL,
-                                 related_name='+')
+                                 related_name='+', null=True)
 
-class TrashBinState:
+    def __str__(self):
+        return "Trash bin " + str(pk)
+
+    class Meta:
+        ordering = ('pk', )
+
+class TrashBinState(models.Model):
     """Fullness state of a given trash bin."""
     # Fullness of a trash bin (0=empty, 100=completely full)
     fullness = models.FloatField(default=0)
@@ -24,5 +30,11 @@ class TrashBinState:
     time = models.DateTimeField()
 
     # The trash bin this instance is the state of
-    trashBin = models.ForeignKey(TrashBin, on_delete=models.CASCADE,
+    trashBin = models.ForeignKey('TrashBin', on_delete=models.CASCADE,
                                  related_name='state_history')
+
+    def __str__(self):
+        return str(fullness)
+
+    class Meta:
+        ordering = ('trashBin', 'time')

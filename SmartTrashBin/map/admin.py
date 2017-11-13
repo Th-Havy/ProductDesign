@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import TrashBin, TrashBinState
+
+admin.site.register(TrashBin)
+admin.site.register(TrashBinState)
