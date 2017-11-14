@@ -13,7 +13,7 @@ class TrashBinStateSerializer(serializers.ModelSerializer):
         fields = ('fullness', 'time')
 
 class TrashBinSerializer(serializers.ModelSerializer):
-    state = TrashBinStateSerializer()
+    state = TrashBinStateSerializer(required=False)
 
     class Meta:
         model = TrashBin
