@@ -11,7 +11,7 @@ class TrashBinSerializer(serializers.ModelSerializer):
     class Meta:
         model = TrashBin
         fields = ('pk', 'latitude', 'longitude', 'floor', 'building', 'state')
-        #read_only_fields = ('date_created', 'date_modified')
+        depth = 1
 
 class TrashBinStateSerializer(serializers.ModelSerializer):
     class Meta:

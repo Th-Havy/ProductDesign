@@ -37,4 +37,4 @@ class TrashBinState(models.Model):
         return str(self.fullness)
 
     class Meta:
-        ordering = ('trashBin', 'time')
+        ordering = ('trashBin', '-time')
