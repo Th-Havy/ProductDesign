@@ -30,6 +30,14 @@ POST 'Content-Type: application/json' '{"latitude
 ":13.0,"longitude":54.0,"floor":5,"building":"BM"}' http://127.0.0.1:8000/api/trashbin/)
 ```
 
+### Update a trash bin
+```
+PUT 'Content-Type: application/json' '{"latitude
+":[value],"longitude":[value],"floor":[value],"building":"[value]"}' http://127.0.0.1:8000/api/trashbin/[id_of_the_trash_bin]
+(curl -i -X PUT -H 'Content-Type: application/json' -d '{"latitude"
+:13.0,"longitude":154.0,"floor":5,"building":"BM"}' http://127.0.0.1:8000/api/trashbin/6/)
+```
+
 ### Delete a particular trash bin
 ```
 DELETE website.com/api/trashbin/[id_of_the_trash_bin]
