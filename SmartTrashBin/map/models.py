@@ -16,7 +16,7 @@ class TrashBin(models.Model):
                                  related_name='+', null=True)
 
     def __str__(self):
-        return "Trash bin " + str(pk)
+        return 'Trash bin {}'.format(self.pk)
 
     class Meta:
         ordering = ('pk', )
@@ -34,7 +34,7 @@ class TrashBinState(models.Model):
                                  related_name='state_history')
 
     def __str__(self):
-        return str(fullness)
+        return str(self.fullness)
 
     class Meta:
         ordering = ('trashBin', 'time')
