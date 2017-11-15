@@ -19,7 +19,7 @@ GET website.com/api/trashbin/
 ### Fetch the data of a particular trashbin
 
 ```
-GET website.com/api/trashbin/[id_of_the_trash_bin]
+GET website.com/api/trashbin/[id_of_the_trash_bin]/
 ```
 
 ### Add a new trash bin
@@ -33,12 +33,26 @@ POST 'Content-Type: application/json' '{"latitude
 ### Update a trash bin
 ```
 PUT 'Content-Type: application/json' '{"latitude
-":[value],"longitude":[value],"floor":[value],"building":"[value]"}' http://127.0.0.1:8000/api/trashbin/[id_of_the_trash_bin]
+":[value],"longitude":[value],"floor":[value],"building":"[value]"}' http://127.0.0.1:8000/api/trashbin/[id_of_the_trash_bin]/
 (curl -i -X PUT -H 'Content-Type: application/json' -d '{"latitude"
 :13.0,"longitude":154.0,"floor":5,"building":"BM"}' http://127.0.0.1:8000/api/trashbin/6/)
 ```
 
 ### Delete a particular trash bin
 ```
-DELETE website.com/api/trashbin/[id_of_the_trash_bin]
+DELETE website.com/api/trashbin/[id_of_the_trash_bin]/
+```
+
+### Fetch all the states (within limits) of a trash bin:
+
+```
+GET website.com/api/trashbin/[id_of_the_trash_bin]/state/
+```
+
+### Update the state of a trash bin
+```
+POST 'Content-Type: application/json' '{"latitude
+":[value],"longitude":[value],"floor":[value],"building":"[value]"}' http://127.0.0.1:8000/api/trashbin/[id_of_the_trash_bin]/state/
+(curl -i -X POST -H 'Content-Type: application/json' -d '{"latitude"
+:13.0,"longitude":154.0,"floor":5,"building":"BM"}' http://127.0.0.1:8000/api/trashbin/6/state/)
 ```
