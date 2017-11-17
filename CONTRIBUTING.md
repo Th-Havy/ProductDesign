@@ -15,7 +15,19 @@ git clone https://gitlab.com/Th-Havy/ProductDesign.git
 # Enter your username and password as prompted
 ```
 
-## Work on the app
+Now create a virtual environment (if you don't have virtualenv, install it with the command "pip install virtualenv")
+```
+# create a folder for the virtual environment:
+mkdir virt_env
+# create virtual environment with python 3:
+virtualenv virt_env -p /usr/bin/python3
+# start the virtual environment:
+source virt_env/bin/activate
+# install all the requirements
+pip install -r requirements.txt
+```
+
+## Working on the app
 
 Move to the app directory.
 
@@ -77,6 +89,7 @@ virtualenv virt_env -p /usr/bin/python3
 source virt_env/bin/activate
 # install django:
 pip install django
+# install additionnal libraries (django rest framework and dependencies)
 ```
 
 Create a django project
