@@ -17,13 +17,15 @@ git clone https://gitlab.com/Th-Havy/ProductDesign.git
 
 Now create a virtual environment (if you don't have virtualenv, install it with the command "pip install virtualenv")
 ```
+# move to the project folder:
+cd ProductDesign
 # create a folder for the virtual environment:
 mkdir virt_env
 # create virtual environment with python 3:
 virtualenv virt_env -p /usr/bin/python3
 # start the virtual environment:
 source virt_env/bin/activate
-# install all the requirements
+# install all the requirements:
 pip install -r requirements.txt
 ```
 
