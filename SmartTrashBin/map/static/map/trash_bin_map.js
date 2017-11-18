@@ -36,7 +36,9 @@ $(document).ready(function() {
     $.ajax({
         url: api_endpoint
     }).then(function(data) {
-        console.log(data[0].building);
+        data.forEach(function(trashbin) {
+            console.log(trashbin.building);
+        });
     });
 });
 
