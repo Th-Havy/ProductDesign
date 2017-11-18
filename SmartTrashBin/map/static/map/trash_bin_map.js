@@ -31,13 +31,16 @@ var mapProperties= {
 // Create the map on the webpage
 var map=new google.maps.Map(document.getElementById("trashBinMap"),mapProperties);
 
-// Fetch the position of the trash bins
+// Fetch the position of the trash bins and display markers
 $(document).ready(function() {
     $.ajax({
         url: api_endpoint
     }).then(function(data) {
         data.forEach(function(trashbin) {
-            console.log(trashbin.building);
+            new google.maps.Marker({
+                position: {lat: trashbin.latitude, lng: trashbin.longitude},
+                map: map
+            });
         });
     });
 });
