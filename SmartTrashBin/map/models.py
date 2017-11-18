@@ -13,7 +13,7 @@ class TrashBin(models.Model):
 
     # Most recent state
     state = models.OneToOneField('TrashBinState', on_delete=models.SET_NULL,
-                                 related_name='+', null=True)
+                                 related_name='+', null=True, blank=True)
 
     def __str__(self):
         return 'Trash bin {}'.format(self.pk)
