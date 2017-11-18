@@ -1,4 +1,4 @@
-function myMap() {
+function initMap() {
 var EPFL_CENTER_LATITUDE = 46.518349;
 var EPFL_CENTER_LONGITUDE = 6.568052;
 var DEFAULT_ZOOM = 18;
@@ -15,4 +15,6 @@ var marker1 = new google.maps.Marker({
           position: rolex,
           map: map
         });
+
+console.log("Ta mère")
 }
