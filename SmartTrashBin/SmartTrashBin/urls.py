@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('map.api.urls')),
+    url(r'^map/', include('map.urls')),
 ]
