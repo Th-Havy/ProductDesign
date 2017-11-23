@@ -1,20 +1,24 @@
 from map.models import TrashBin, TrashBinState
 from .serializers import TrashBinSerializer, TrashBinStateSerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework import permissions
 
 
 class TrashBinList(ListCreateAPIView):
     """View to list all trash bins and add new ones"""
     queryset = TrashBin.objects.all()
     serializer_class = TrashBinSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class TrashBinDetail(RetrieveUpdateDestroyAPIView):
     """View to get detail on a trash bin"""
     queryset = TrashBin.objects.all()
     serializer_class = TrashBinSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class TrashBinStateList(ListCreateAPIView):
+    """View to list the states of a trash bin and add new ones"""
     serializer_class = TrashBinStateSerializer
 
     def get_queryset(self):

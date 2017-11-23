@@ -44,12 +44,23 @@ $(document).ready(function()
     {
         data.forEach(function(trashbin)
         {
+            var color = "";
+
+            if (trashbin.state.fullness > 70)
+                color = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
+            else if (trashbin.state.fullness > 30)
+                color = "http://maps.google.com/mapfiles/ms/icons/orange-dot.png";
+            else
+                color = "http://maps.google.com/mapfiles/ms/icons/green-dot.png";
+
             // Create a marker for each trashbin
             var marker = new google.maps.Marker(
             {
                 position: {lat: trashbin.latitude, lng: trashbin.longitude},
                 map: map,
-                label: String(trashbin.state.fullness)
+                label: String(trashbin.state.fullness),
+                icon: color
+                //icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
             });
 
             if (buildingClusters[trashbin.building] == undefined)
