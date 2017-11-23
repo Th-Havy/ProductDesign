@@ -20,6 +20,7 @@ class TrashBinDetail(RetrieveUpdateDestroyAPIView):
 class TrashBinStateList(ListCreateAPIView):
     """View to list the states of a trash bin and add new ones"""
     serializer_class = TrashBinStateSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
         """Return the states of a particular trash bin"""
