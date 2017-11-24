@@ -5,6 +5,16 @@ from django.db import models
 
 class TrashBin(models.Model):
     """Model of a trash bin."""
+    # Possible types of waste
+    WASTE_TYPE_CHOICES = (
+    ('GENERAL WASTE', 'General waste'),
+    ('PET', 'PET'),
+    ('ALUMINUM', 'ALUMINUM'),
+    ('PAPER', 'PAPER'),
+    ('ORGANIC', 'ORGANIC')
+    )
+
+    wasteType = models.CharField(max_length=13, choices=WASTE_TYPE_CHOICES, default='GENERAL WASTE')
     # Location
     latitude = models.FloatField()
     longitude = models.FloatField()

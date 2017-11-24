@@ -17,4 +17,4 @@ class TrashBinSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TrashBin
-        fields = ('pk', 'latitude', 'longitude', 'floor', 'building', 'state')
+        fields = ('pk', 'wasteType', 'latitude', 'longitude', 'floor', 'building', 'state')
