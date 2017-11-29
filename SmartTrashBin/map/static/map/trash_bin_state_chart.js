@@ -19,6 +19,15 @@ $(document).ready(function() {
     });
 });
 
+//liste détat dans data
+data.forEach(fonctionDeTraitement);
+
+function fonctionDeTraitement(state) {
+    static average = 0
+
+    average += state.fullness /100;
+}
+
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {

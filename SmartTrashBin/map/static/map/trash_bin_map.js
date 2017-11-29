@@ -36,7 +36,7 @@ var map=new google.maps.Map(document.getElementById("trashBinMap"),mapProperties
 
 // Control events
 map.addListener('rightclick', function() {
-
+    
     console.log("Right click")
   });
 
@@ -55,56 +55,65 @@ $(document).ready(function()
         url: api_endpoint
     }).then(function(data)
     {
-        data.forEach(function(trashbin)
-        {
-            var color = "";
-
-            if (trashbin.state.fullness > 70)
-                color = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
-            else if (trashbin.state.fullness > 30)
-                color = "http://maps.google.com/mapfiles/ms/icons/orange-dot.png";
-            else
-                color = "http://maps.google.com/mapfiles/ms/icons/green-dot.png";
-
-            // Create a marker for each trashbin
-            var marker = new google.maps.Marker(
-            {
-                position: {lat: trashbin.latitude, lng: trashbin.longitude},
-                map: map,
-                icon: color
-                //icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
-            });
-
-            // Pop up window with informations about the trashbin
-            marker.addListener('click', function()
-            {
-                var content = infoWindowContent;
-                content = content.replace("__building__", trashbin.building);
-                content = content.replace("__floor__", "floor " + String(trashbin.floor));
-                content = content.replace("__waste__", trashbin.wasteType);
-                content = content.replace("__fullness__", trashbin.state.fullness);
-                infoWindow.setContent(content);
-                infoWindow.open(map, marker);
-            });
-
-
-            if (buildingClusters[trashbin.building] == undefined)
-            {
-                buildingClusters[trashbin.building] = [];
-            }
-
-            buildingClusters[trashbin.building].push(marker);
-        });
-
-        // Group trash bins by building
-        for(var building in buildingClusters)
-        {
-           var markerCluster = new MarkerClusterer(map, buildingClusters[building],
-               {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
-                averageCenter: true,
-                gridSize: 100});
-        }
-
+        populateMap(map, data, buildingClusters, infoWindow, infoWindowContent);
     });
 });
+}
+
+function populateMap(map, data, buildingClusters, infoWindow, infoWindowContent)
+{
+    data.forEach(function(trashbin)
+    {
+        var color = "";
+
+        if (trashbin.state.fullness > 70)
+            color = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
+        else if (trashbin.state.fullness > 30)
+            color = "http://maps.google.com/mapfiles/ms/icons/orange-dot.png";
+        else
+            color = "http://maps.google.com/mapfiles/ms/icons/green-dot.png";
+
+        // Create a marker for each trashbin
+        var marker = new google.maps.Marker(
+        {
+            position: {lat: trashbin.latitude, lng: trashbin.longitude},
+            map: map,
+            icon: color
+            //icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+        });
+
+        // Pop up window with informations about the trashbin
+        marker.addListener('click', function()
+        {
+            openInformationPopUp(map, marker, trashbin, infoWindow, infoWindowContent);
+        });
+
+
+        if (buildingClusters[trashbin.building] == undefined)
+        {
+            buildingClusters[trashbin.building] = [];
+        }
+
+        buildingClusters[trashbin.building].push(marker);
+    });
+
+    // Group trash bins by building
+    for(var building in buildingClusters)
+    {
+       var markerCluster = new MarkerClusterer(map, buildingClusters[building],
+           {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+            averageCenter: true,
+            gridSize: 100});
+    }
+}
+
+function openInformationPopUp(map, marker, trashbin, infoWindow, infoWindowContent)
+{
+    var content = infoWindowContent;
+    content = content.replace("__building__", trashbin.building);
+    content = content.replace("__floor__", "floor " + String(trashbin.floor));
+    content = content.replace("__waste__", trashbin.wasteType);
+    content = content.replace("__fullness__", trashbin.state.fullness);
+    infoWindow.setContent(content);
+    infoWindow.open(map, marker);
 }
