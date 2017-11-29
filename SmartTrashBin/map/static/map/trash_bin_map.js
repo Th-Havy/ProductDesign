@@ -19,6 +19,7 @@ var mapStyles =[
     }
 ];
 
+// Define the properties of the displayed map
 var mapProperties= {
     center:new google.maps.LatLng(EPFL_CENTER_LATITUDE, EPFL_CENTER_LONGITUDE),
     zoom:DEFAULT_ZOOM,
@@ -35,16 +36,28 @@ var mapProperties= {
 var map=new google.maps.Map(document.getElementById("trashBinMap"),mapProperties);
 
 // Control events
-map.addListener('rightclick', function() {
-    
-    console.log("Right click")
-  });
+map.addListener("dblclick", function(event)
+{
+    trashbin = {
+        latitude: event.latLng.lat(),
+        longitude: event.latLng.lng(),
+        state: { fullness: 0 },
+        building: "Unknown",
+        floor: 0,
+        wasteType: "GENERAL WASTE"
+    };
 
-  var infoWindowContent = document.getElementById("infoWindow").innerHTML;
+    addTrashbinMarker(map, buildingClusters, trashbin, infoWindow, infoWindowContent);
+    updateBuildingClusters(map, buildingClusters);
+    console.log("Double click")
+});
 
-  var infoWindow = new google.maps.InfoWindow({
-      content: infoWindowContent
-  });
+var infoWindowContent = document.getElementById("infoWindow").innerHTML;
+
+var infoWindow = new google.maps.InfoWindow(
+{
+    content: infoWindowContent
+});
 
 
 // Fetch the position of the trash bins and display markers
@@ -64,40 +77,53 @@ function populateMap(map, data, buildingClusters, infoWindow, infoWindowContent)
 {
     data.forEach(function(trashbin)
     {
-        var color = "";
-
-        if (trashbin.state.fullness > 70)
-            color = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
-        else if (trashbin.state.fullness > 30)
-            color = "http://maps.google.com/mapfiles/ms/icons/orange-dot.png";
-        else
-            color = "http://maps.google.com/mapfiles/ms/icons/green-dot.png";
-
-        // Create a marker for each trashbin
-        var marker = new google.maps.Marker(
-        {
-            position: {lat: trashbin.latitude, lng: trashbin.longitude},
-            map: map,
-            icon: color
-            //icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
-        });
-
-        // Pop up window with informations about the trashbin
-        marker.addListener('click', function()
-        {
-            openInformationPopUp(map, marker, trashbin, infoWindow, infoWindowContent);
-        });
-
-
-        if (buildingClusters[trashbin.building] == undefined)
-        {
-            buildingClusters[trashbin.building] = [];
-        }
-
-        buildingClusters[trashbin.building].push(marker);
+        addTrashbinMarker(map, buildingClusters, trashbin, infoWindow, infoWindowContent);
     });
 
-    // Group trash bins by building
+    updateBuildingClusters(map, buildingClusters);
+}
+
+function addTrashbinMarker(map, buildingClusters, trashbin, infoWindow, infoWindowContent)
+{
+    var color = "";
+
+    if (trashbin.state.fullness > 70)
+        color = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
+    else if (trashbin.state.fullness > 30)
+        color = "http://maps.google.com/mapfiles/ms/icons/orange-dot.png";
+    else
+        color = "http://maps.google.com/mapfiles/ms/icons/green-dot.png";
+
+    // Create a marker for each trashbin
+    var marker = new google.maps.Marker(
+    {
+        position: {lat: trashbin.latitude, lng: trashbin.longitude},
+        map: map,
+        icon: color
+    });
+
+    // Pop up window with informations about the trashbin
+    marker.addListener('click', function()
+    {
+        openInformationPopUp(map, marker, trashbin, infoWindow, infoWindowContent);
+    });
+
+    addTrashbinToBuildingClusters(map, buildingClusters, trashbin, marker);
+}
+
+function addTrashbinToBuildingClusters(map, buildingClusters, trashbin, marker)
+{
+    if (buildingClusters[trashbin.building] == undefined)
+    {
+        buildingClusters[trashbin.building] = [];
+    }
+
+    buildingClusters[trashbin.building].push(marker);
+}
+
+// Group trash bins by building
+function updateBuildingClusters(map, buildingClusters)
+{
     for(var building in buildingClusters)
     {
        var markerCluster = new MarkerClusterer(map, buildingClusters[building],
