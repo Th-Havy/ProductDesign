@@ -2,12 +2,14 @@
 
 {% load static %}
 
+{% block title %} <title id="titleId"> Trash Bin {{ pk }} </title> {% endblock %}
+
 {% block content %}
 
-{# Include chart.js library #}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-
 <canvas id="stateChart" width="100%" height="50%"></canvas>
+
+<!-- Include chart.js library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
 <script src="{% static "map/trash_bin_state_chart.js" %}"></script>
 

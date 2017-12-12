@@ -29,17 +29,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"> Smart Trash Bin </a>
+                <a class="navbar-brand" href="{% url 'map'%}"> Smart Trash Bin </a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#"> Map </a></li>
-                    <li> <a href="#about"> States </a> </li>
-                    <li> <a href="#contact"> Predictions </a> </li>
+                    <li><a href="{% url 'admin:index'%}"> Admin </a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li> <a href="#"> About </a> </li>
-                    <li> <a href="#"> Contact </a> </li>
+                    <li> <a href="{% url 'about'%}"> About </a> </li>
+                    <li> <a href="{% url 'contact'%}"> Contact </a> </li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

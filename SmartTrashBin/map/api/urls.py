@@ -6,7 +6,7 @@ from . import views
 app_name = 'api'
 
 urlpatterns = [
-    # website.com/api/trashbin/
+    # website.com/api/trashbin
     url(r'^trashbin/$', views.TrashBinList.as_view(), name='trashbin-list'),
     # website.com/api/trashbin/12/
     url(r'^trashbin/(?P<pk>[0-9]+)/$', views.TrashBinDetail.as_view(), name='trashbin-detail'),

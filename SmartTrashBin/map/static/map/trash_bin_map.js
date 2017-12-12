@@ -35,23 +35,6 @@ var mapProperties= {
 // Create the map on the webpage
 var map=new google.maps.Map(document.getElementById("trashBinMap"),mapProperties);
 
-// Control events
-map.addListener("dblclick", function(event)
-{
-    trashbin = {
-        latitude: event.latLng.lat(),
-        longitude: event.latLng.lng(),
-        state: { fullness: 0 },
-        building: "Unknown",
-        floor: 0,
-        wasteType: "GENERAL WASTE"
-    };
-
-    addTrashbinMarker(map, buildingClusters, trashbin, infoWindow, infoWindowContent);
-    updateBuildingClusters(map, buildingClusters);
-    console.log("Double click")
-});
-
 var infoWindowContent = document.getElementById("infoWindow").innerHTML;
 
 var infoWindow = new google.maps.InfoWindow(
@@ -140,6 +123,9 @@ function openInformationPopUp(map, marker, trashbin, infoWindow, infoWindowConte
     content = content.replace("__floor__", "floor " + String(trashbin.floor));
     content = content.replace("__waste__", trashbin.wasteType);
     content = content.replace("__fullness__", trashbin.state.fullness);
+    content = content.replace("__stateUrl__", window.location.pathname + "state/" + String(trashbin.pk));
+    content = content.replace("__editUrl__", "/admin/map/trashbin/" + String(trashbin.pk) + "/change/");
+    http://127.0.0.1:8000/admin/map/trashbin/8/change/
     infoWindow.setContent(content);
     infoWindow.open(map, marker);
 }
