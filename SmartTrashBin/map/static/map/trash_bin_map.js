@@ -1,4 +1,7 @@
-var api_endpoint = "http://127.0.0.1:8000/api/trashbin/"
+var pageHref = window.location.href; // http://127.0.0.1:8000/map/state/8
+var domain = pageHref.substring(0, pageHref.search("map"));// http://127.0.0.1:8000/ (domain)
+
+var api_endpoint = domain + "api/trashbin/"
 
 function initMap() {
 var EPFL_CENTER_LATITUDE = 46.518349;

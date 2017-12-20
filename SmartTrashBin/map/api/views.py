@@ -22,7 +22,7 @@ class TrashBinDetail(RetrieveUpdateDestroyAPIView):
 class TrashBinStateList(ListCreateAPIView):
     """View to list the states of a trash bin and add new ones"""
     serializer_class = TrashBinStateSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    #permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
     def get_queryset(self):
         """Return the states of a particular trash bin"""
@@ -34,8 +34,11 @@ class TrashBinStateList(ListCreateAPIView):
         # If a date is specified
         date = self.request.query_params.get('date', None)
         if date is not None:
-            date = parse_datetime(date)
-            queryset = queryset.filter(time__year=date.year, time__month=date.month, time__day=date.day)
+            if date == "average":
+                pass
+            else:
+                date = parse_datetime(date)
+                queryset = queryset.filter(time__year=date.year, time__month=date.month, time__day=date.day)
 
         return queryset
 
