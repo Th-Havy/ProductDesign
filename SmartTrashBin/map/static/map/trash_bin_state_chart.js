@@ -69,24 +69,88 @@ $(document).ready(function()
         times.reverse();
         fullness_levels.reverse();
 
+        //times_labels = createLabelsForTime();
+
+        /*if (times.length != 0)
+        {
+            fullness_levels = formatFullness24Hours(times, fullness_levels);
+        }
+        else
+        {
+            fullness_levels = [];
+        }*/
+
         createChart(ctx, times, fullness_levels);
 
     });
 });
 
-function createChart(ctx, times, fullness_levels)
+function createChart(ctx, times_labels, fullness_levels)
 {
+    var myData = [];
+
+    for (var i = 0; i < times_labels.length; i++)
+    {
+        myData.push({
+            x: new Date(times_labels[i]),
+            y: fullness_levels[i]
+        });
+    }
+
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: times,
+            labels: times_labels,
             datasets: [{
                 label: 'Fullness level',
-                data: fullness_levels,
+                data: myData,
                 backgroundColor: color("#4286f4").alpha(0.5).rgbString(),
 				borderColor: "#3e95cd",
                 borderWidth: 3
             }]
+        },
+        options:
+        {
+            title:
+            {
+                text: formatDayTitle(),
+                display: true,
+                fontSize: 32,
+            },
+            scales:
+            {
+                xAxes: [
+                {
+                    type: 'time',
+                    time:
+                    {
+                        unit: 'minute',
+                        unitStepSize: 60,
+                        distribution: 'linear',
+                        displayFormats:
+                        {
+                            'millisecond': 'HH:mm',
+                            'second': 'HH:mm',
+                            'minute': 'HH:mm',
+                            'hour': 'HH:mm',
+                            'day': 'HH:mm',
+                            'week': 'HH:mm',
+                            'month': 'HH:mm',
+                            'quarter': 'HH:mm',
+                            'year': 'HH:mm',
+                        },
+                        //parser: 'yyyy-MM-ddTHH:mm:ssZ',
+                    },
+                }],
+                bounds: 'data',
+            },
+            elements:
+            {
+                point:
+                {
+                    radius: 0
+                }
+            }
         }
     });
 }
@@ -123,4 +187,13 @@ function reloadWithDateFilter(dateFilter)
     }
 
     window.location.assign(dateFilter);
+}
+
+function formatDayTitle()
+{
+    if (dateFilter.substring(6) == "average") {
+        return "Average";
+    }
+    
+    return String(moment(dateFilter.substring(6)).format("DD MMMM YYYY"));
 }

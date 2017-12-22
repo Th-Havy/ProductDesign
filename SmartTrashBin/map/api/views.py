@@ -35,7 +35,7 @@ class TrashBinStateList(ListCreateAPIView):
         date = self.request.query_params.get('date', None)
         if date is not None:
             if date == "average":
-                pass
+                queryset = computeAverage(trashId, queryset)
             else:
                 date = parse_datetime(date)
                 queryset = queryset.filter(time__year=date.year, time__month=date.month, time__day=date.day)
@@ -52,3 +52,7 @@ class TrashBinStateList(ListCreateAPIView):
         if trashBin.state.time <= state.time:
             trashBin.state = state
             trashBin.save()
+
+# Computes the daily average of the fullness (average of fullness at given times)
+def computeAverage(id, queryset):
+    return queryset.filter(time__year=2000, time__month=11, time__day=12)

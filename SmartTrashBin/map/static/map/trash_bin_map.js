@@ -4,9 +4,9 @@ var domain = pageHref.substring(0, pageHref.search("map"));// http://127.0.0.1:8
 var api_endpoint = domain + "api/trashbin/"
 
 function initMap() {
-var EPFL_CENTER_LATITUDE = 46.518349;
-var EPFL_CENTER_LONGITUDE = 6.568052;
-var DEFAULT_ZOOM = 18;
+var EPFL_CENTER_LATITUDE = 46.519802;
+var EPFL_CENTER_LONGITUDE = 6.567724;
+var DEFAULT_ZOOM = 16;
 
 // Variable containing the trash bin positions grouped by building
 var buildingClusters = {};
@@ -126,7 +126,7 @@ function openInformationPopUp(map, marker, trashbin, infoWindow, infoWindowConte
     content = content.replace("__floor__", "floor " + String(trashbin.floor));
     content = content.replace("__waste__", trashbin.wasteType);
     content = content.replace("__fullness__", trashbin.state.fullness);
-    content = content.replace("__stateUrl__", window.location.pathname + "state/" + String(trashbin.pk));
+    content = content.replace("__stateUrl__", window.location.pathname + "state/" + String(trashbin.pk) + "?date=" + Date.today().toString('yyyy-MM-dd') + "T00:00:01Z");
     content = content.replace("__editUrl__", "/admin/map/trashbin/" + String(trashbin.pk) + "/change/");
     http://127.0.0.1:8000/admin/map/trashbin/8/change/
     infoWindow.setContent(content);
