@@ -1,6 +1,6 @@
 # Smart Trash Bin
 
-![Web app main page](webapp.png) ![Web app levels](levels.png)
+![Web app main page](website.png) ![Web app fullness](level.png)
 
 This is a web app as part of the project for the product design course (Yves Bellouard at EPFL). This repository contains the code for both the web app and the code for the ESP32 microcontroller embedded in our smart trash bin.
 This web app shall receive data from "Smart" trash bins, process it and provide some visualisations and predictions, in order to help EPFL cleaners.
@@ -10,7 +10,7 @@ We use Django for the back-end (Server side of the app), which is a python frame
 
 ### Installing
 
-Refer to Section "Start working on the app" of CONTRIBUTING.md for how to setup the web app and run the development server. (The web app is not hosted online yet) 
+Refer to Section "Start working on the app" of [CONTRIBUTING.md](CONTRIBUTING.md) for how to setup the web app and run the development server. (The web app is not hosted online yet) 
 
 ## Deployment
 
