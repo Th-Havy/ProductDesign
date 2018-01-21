@@ -8,7 +8,7 @@ We use Django for the back-end (Server side of the app), which is a python frame
 
 ### Installing
 
-Refer to CONTRIBUTING.md for how to setup the web app and run the development server. (The web app is not hosted online yet) 
+Refer to Section "Start working on the app" of CONTRIBUTING.md for how to setup the web app and run the development server. (The web app is not hosted online yet) 
 
 ## Deployment
 
