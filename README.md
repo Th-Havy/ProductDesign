@@ -40,7 +40,8 @@ We use [Gitlab](https://gitlab.com/) for version control and code sharing.
 
 ## Authors
 
-* **Thomas Havy**
+* **Thomas Havy** - Web App
+* **Matthieu Dujany** - ESP32 code
 
 ## License
 
